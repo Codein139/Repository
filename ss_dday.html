@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <title>Normandy Invasion: Day 1</title>
+   <link rel="stylesheet" href="ss_layouts.css">
+   <link rel="stylesheet" href="ss_styles.css">
+   <style>
+      /* Ensure the canvas sits nicely on your page layout */
+      #animationCanvas {
+         display: block;
+         margin: 20px auto;
+         background-color: #f0f0f0; /* Optional placeholder background */
+         border: 1px solid #ccc;
+      }
+   </style>
+</head>
 
+<body>
+   <header>
+      <img src="ss_logo.png" alt="A Soldier's Scrapbook" />
+      <nav class="horizontal">
+         <ul>
+            <li><a href="#">Blitzkrieg</a></li>
+            <li><a href="#">Battle of Britain</a></li>
+            <li><a href="#">Normandy Invasion</a></li>
+            <li><a href="#">Market Garden</a></li>
+            <li><a href="#">Fall of Berlin</a></li>
+            <li><a href="#">Postwar Upheaval</a></li>
+         </ul>
+      </nav>
+   </header>
+   <article>
+      <h1>The Normandy Invasion</h1>
+      <p>The invasion on the beaches of Normandy on June 6, 1944, was the largest air, land, and sea operation 
+         undertaken before or since June 6, 1944. <em>Operation Overlord</em> involved over 150,000 service
+         men stationed on over 5,000 ships and 11,000 airplanes. The initial wave of soldiers on the beaches
+         had to cover over 200 yards of small-arms fire and artillery before reaching any protection.
+         Casualties were immense: 4000 men died on the beaches, 6000 were wounded.</p>
+      
+      <!-- 1. ADDED CANVAS ELEMENT -->
+      <canvas id="animationCanvas" width="800" height="200"></canvas>
+
+      <p>The landing beaches were intended to provide footholds that would allow rapid reinforcement and expansion 
+         inland by joining the beach flanks to create a continuous perimeter before the enemy could mount a 
+         major counter-attack. Each beach would be assaulted by approximately one army division, with 
+         initial landings made from 6:30 a.m. to 7:30 a.m. Their beach landings followed bombardment by 
+         ships' guns and aircraft ordnance, kept brief to maintain as much as possible of the element of 
+         surprise. As a result, German shore defenses remained intact and a threat to the landing forces.</p>
+   </article>
+
+   <!-- 2. LINKED JAVASCRIPT ANIMATION FILE -->
+   <script src="soldier-animation.js"></script>
+</body>
+</html>
