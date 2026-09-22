@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <title>Normandy Invasion: Day 1</title>
+   <link rel="stylesheet" href="ss_layouts.css">
+   <link rel="stylesheet" href="ss_styles.css">
+   <style>
+      #animationCanvas {
+         display: block;
+         margin: 20px auto;
+         background-color: #d1c7bd; /* Sandy beige beach color */
+         border: 2px solid #5a534c;
+         border-radius: 4px;
+         box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+      }
+   </style>
+</head>
+
+<body>
+   <header>
+      <img src="ss_logo.png" alt="A Soldier's Scrapbook" />
+      <nav class="horizontal">
+         <ul>
+            <li><a href="#">Blitzkrieg</a></li>
+            <li><a href="#">Battle of Britain</a></li>
+            <li><a href="#">Normandy Invasion</a></li>
+            <li><a href="#">Market Garden</a></li>
+            <li><a href="#">Fall of Berlin</a></li>
+            <li><a href="#">Postwar Upheaval</a></li>
+         </ul>
+      </nav>
+   </header>
+   <article>
+      <h1>The Normandy Invasion</h1>
+      <p>The invasion on the beaches of Normandy on June 6, 1944, was the largest air, land, and sea operation 
+         undertaken before or since June 6, 1944. <em>Operation Overlord</em> involved over 150,000 service
+         men stationed on over 5,000 ships and 11,000 airplanes. The initial wave of soldiers on the beaches
+         had to cover over 200 yards of small-arms fire and artillery before reaching any protection.
+         Casualties were immense: 4000 men died on the beaches, 6000 were wounded.</p>
+      
+      <!-- INTEGRATED SELF-CONTAINED CANVAS ELEMENT -->
+      <canvas id="animationCanvas" width="800" height="200"></canvas>
+
+      <p>The landing beaches were intended to provide footholds that would allow rapid reinforcement and expansion 
+         inland by joining the beach flanks to create a continuous perimeter before the enemy could mount a 
+         major counter-attack. Each beach would be assaulted by approximately one army division, with 
+         initial landings made from 6:30 a.m. to 7:30 a.m. Their beach landings followed bombardment by 
+         ships' guns and aircraft ordnance, kept brief to maintain as much as possible of the element of 
+         surprise. As a result, German shore defenses remained intact and a threat to the landing forces.</p>
+   </article>
+
+   <!-- INTEGRATED INLINE JAVASCRIPT ANIMATION WITH PROCEDURAL SPRITE -->
+   <script>
+      const canvas = document.getElementById('animationCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Animation parameters
+      let soldierX = -50;
+      const soldierY = 120;
+      let time = 0;
+      const runSpeed = 2.5;
+
+      function drawSoldier(ctx, x, y, cycle) {
+          // Math helper variables to simulate a continuous running motion
+          const legAngle1 = Math.sin(cycle) * 0.6;
+          const legAngle2 = Math.sin(cycle + Math.PI) * 0.6;
+          const armAngle1 = Math.sin(cycle + Math.PI) * 0.4;
+          const armAngle2 = Math.sin(cycle) * 0.4;
+          const bobbing = Math.abs(Math.sin(cycle * 2)) * 6; // Head bobs up/down while running
+
+          ctx.save();
+          ctx.translate(x, y - bobbing);
+          
+          // Style configuration: WW2 Military Silhouette look
+          ctx.fillStyle = '#2d3326';  // Olive drab / Charcoal silhouette
+          ctx.strokeStyle = '#2d3326';
+          ctx.lineWidth = 5;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          // --- LEGS ---
+          // Front Leg (Hip to Knee to Foot)
+          ctx.beginPath();
+          ctx.moveTo(0, 20); // Hip
+          let kx1 = Math.sin(legAngle1) * 20;
+          let ky1 = Math.cos(legAngle1) * 20;
+          ctx.lineTo(kx1, 20 + ky1); // Knee
+          ctx.lineTo(kx1 + Math.sin(legAngle1 - 0.4) * 20, 20 + ky1 + Math.cos(legAngle1 - 0.4) * 20); // Foot
+          ctx.stroke();
+
+          // Back Leg
+          ctx.beginPath();
+          ctx.moveTo(0, 20); 
+          let kx2 = Math.sin(legAngle2) * 20;
+          let ky2 = Math.cos(legAngle2) * 20;
+          ctx.lineTo(kx2, 20 + ky2); 
+          ctx.lineTo(kx2 + Math.sin(legAngle2 - 0.4) * 20, 20 + ky2 + Math.cos(legAngle2 - 0.4) * 20); 
+          ctx.stroke();
+
+          // --- TORSO (Leaning forward slightly) ---
+          ctx.beginPath();
+          ctx.lineWidth = 14;
+          ctx.moveTo(0, 20); // Lower spine
+          ctx.lineTo(8, -15); // Shoulders
+          ctx.stroke();
+
+          // --- HEAD & WW2 BRODIE HELMET ---
+          ctx.beginPath();
+          ctx.arc(10, -28, 7, 0, Math.PI * 2); // Head
+          ctx.fill();
+          // Helmet brim
+          ctx.beginPath();
+          ctx.lineWidth = 3;
+          ctx.moveTo(-1, -30);
+          ctx.lineTo(21, -26);
+          ctx.stroke();
+
+          // --- WEAPON / RIFLE (Slanted forward forward) ---
+          ctx.save();
+          ctx.strokeStyle = '#1c1f18';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(35, -25); // Barrel
+          ctx.lineTo(-5, -5);  // Stock
+          ctx.stroke();
+          ctx.restore();
+
+          // --- ARMS (Holding the rifle) ---
+          // Front Arm
+          ctx.beginPath();
+          ctx.lineWidth = 5;
+          ctx.moveTo(8, -10); // Shoulder
+          ctx.lineTo(18 + armAngle1 * 10, -2); // Elbow
+          ctx.lineTo(20, -15); // Hand on rifle
+          ctx.stroke();
+
+          // Back Arm
+          ctx.beginPath();
+          ctx.moveTo(8, -10);
+          ctx.lineTo(10 + armAngle2 * 10, -5);
+          ctx.lineTo(5, -10);
+          ctx.stroke();
+
+          ctx.restore();
+      }
+
+      function animate() {
+          // Clear current layout
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // Draw environmental elements (Grounded horizon line)
+          ctx.strokeStyle = '#a69a8f';
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.moveTo(0, soldierY + 40);
+          ctx.lineTo(canvas.width, soldierY + 40);
+          ctx.stroke();
+
+          // Update animation step variables
+          time += 0.18; // Speed of the leg cycle swing
+          soldierX += runSpeed;
+
+          // Loop back over to the left side if the boundary is hit
+          if (soldierX > canvas.width + 50) {
+              soldierX = -50;
+          }
+
+          // Draw the procedural running silhouette asset
+          drawSoldier(ctx, soldierX, soldierY, time);
+
+          requestAnimationFrame(animate);
+      }
+
+      // Initialize the rendering loop
+      animate();
+   </script>
+</body>
+</html>
