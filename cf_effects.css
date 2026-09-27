@@ -71,6 +71,10 @@ div#cube {
   width: 400px;
   height: 400px;
   perspective: 450px;
+  
+  /* FIXED: Preserves true 3D spatial layout and triggers continuous spinning */
+  transform-style: preserve-3d;
+  animation: slowCubeSpin 16s linear infinite;
 }
 
 /* Base Styles for All Cube Faces */
@@ -78,6 +82,8 @@ div.cube_face {
   position: absolute;
   width: 400px;
   height: 400px;
+  background-color: rgba(0, 0, 0, 0.7); /* Adds visibility backing for 3D depth alignment */
+  backface-visibility: visible;
 }
 
 /* Position Each Face in 3D Space */
@@ -103,9 +109,14 @@ div#cube_top {
   align-items: center;
 }
 
-/* FIXED: Added the missing bottom face so Target 1 can be seen */
+/* FIXED: Added the missing bottom face layout dimensions */
 div#cube_bottom {
   transform: translateY(200px) rotateX(-90deg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -130,7 +141,7 @@ div#cube_bottom {
       0 0 11px #fff, 
       0 0 19px #ff00de, 
       0 0 40px #ff00de;
-    transform: scale(0.98);
+    transform: scale(0.95);
   }
   100% {
     color: #ffe6ff;
@@ -139,7 +150,7 @@ div#cube_bottom {
       0 0 15px #ff00de, 
       0 0 30px #ff00de, 
       0 0 60px #ff00de;
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
 }
 
@@ -159,11 +170,21 @@ div#cube_bottom {
   33% {
     color: #00ff00;
     text-shadow: 0 0 8px #00ff00;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
   66% {
     color: #ffff00;
     text-shadow: 0 0 8px #ffff00;
-    transform: translateY(3px);
+    transform: translateY(5px);
+  }
+}
+
+/* Base Rotation Loop for the Global Cube Wrapper */
+@keyframes slowCubeSpin {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
   }
 }
