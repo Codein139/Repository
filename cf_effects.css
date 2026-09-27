@@ -99,9 +99,9 @@ div#cube_right {
   transform: translateX(200px) rotateY(-90deg);
 }
 
-/* FIXED: Sits properly and uses flexbox alignment */
+/* FIXED: Sits properly and adds rotateZ(180deg) to prevent upside-down text */
 div#cube_top {
-  transform: translateY(-200px) rotateX(90deg);
+  transform: translateY(-200px) rotateX(90deg) rotateZ(180deg);
   overflow: hidden; 
   display: flex;
   flex-direction: column;
@@ -109,9 +109,9 @@ div#cube_top {
   align-items: center;
 }
 
-/* FIXED: Sits properly and uses flexbox alignment */
+/* FIXED: Sits properly and adds rotateZ(180deg) to prevent upside-down text */
 div#cube_bottom {
-  transform: translateY(200px) rotateX(-90deg);
+  transform: translateY(200px) rotateX(-90deg) rotateZ(180deg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -130,7 +130,6 @@ div#cube_bottom {
   padding: 10px;
   text-align: center;
   word-wrap: break-word;
-  /* FIXED: Combined the flip (rotate) with the pulsing glow animation scale */
   animation: festivalGlow 3s ease-in-out infinite alternate;
 }
 
@@ -142,7 +141,7 @@ div#cube_bottom {
       0 0 11px #fff, 
       0 0 19px #ff00de, 
       0 0 40px #ff00de;
-    transform: rotate(180deg) scale(0.95); /* FIXED: Added rotate(180deg) to orient text right-side up */
+    transform: scale(0.95);
   }
   100% {
     color: #ffe6ff;
@@ -151,7 +150,7 @@ div#cube_bottom {
       0 0 15px #ff00de, 
       0 0 30px #ff00de, 
       0 0 60px #ff00de;
-    transform: rotate(180deg) scale(1.05); /* FIXED: Added rotate(180deg) to orient text right-side up */
+    transform: scale(1.05);
   }
 }
 
@@ -159,7 +158,6 @@ div#cube_bottom {
 #cube_top p, #cube_top span, #cube_top div {
   text-align: center;
   width: 100%;
-  /* FIXED: Combined the flip (rotate) with the floating bounce animation */
   animation: lineupPulse 4s linear infinite;
 }
 
@@ -167,17 +165,17 @@ div#cube_bottom {
   0%, 100% {
     color: #00ffff;
     text-shadow: 0 0 8px #00ffff;
-    transform: rotate(180deg) translateY(0); /* FIXED: Added rotate(180deg) to orient text right-side up */
+    transform: translateY(0);
   }
   33% {
     color: #00ff00;
     text-shadow: 0 0 8px #00ff00;
-    transform: rotate(180deg) translateY(-5px); /* FIXED: Added rotate(180deg) to orient text right-side up */
+    transform: translateY(-5px);
   }
   66% {
     color: #ffff00;
     text-shadow: 0 0 8px #ffff00;
-    transform: rotate(180deg) translateY(5px); /* FIXED: Added rotate(180deg) to orient text right-side up */
+    transform: translateY(5px);
   }
 }
 
