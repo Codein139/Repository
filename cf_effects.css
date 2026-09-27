@@ -6,7 +6,7 @@
    Case Problem 2
    
    Design Styles for the Chupacabra Music Fest
-   Author: Nick Camper
+   Author: 
    Date:   9/23/2026
    
    Filename: cf_effects.css
@@ -95,8 +95,71 @@ div#cube_right {
 
 div#cube_top {
   transform: translateY(-200px) rotateY(-90deg);
+  
+  /* Target 2 Adaptations: Keeps the text inside boundaries */
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-div#cube_bottom {
-  transform: translateY(200px) rotateY(90deg);
+
+/* ========================================================
+   Custom Text Animations for Festival Theme
+   ======================================================== */
+
+/* Target 1: Bottom Face Animation (Festival Title h1) */
+#cube_bottom h1 {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  word-wrap: break-word;
+  animation: festivalGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes festivalGlow {
+  0% {
+    color: #fff;
+    text-shadow: 
+      0 0 4px #fff, 
+      0 0 11px #fff, 
+      0 0 19px #ff00de, 
+      0 0 40px #ff00de;
+    transform: scale(0.98);
+  }
+  100% {
+    color: #ffe6ff;
+    text-shadow: 
+      0 0 4px #fff, 
+      0 0 15px #ff00de, 
+      0 0 30px #ff00de, 
+      0 0 60px #ff00de;
+    transform: scale(1.02);
+  }
+}
+
+/* Target 2: Top Face Animation (Lineup Text & More) */
+#cube_top p, #cube_top span, #cube_top div {
+  text-align: center;
+  width: 100%;
+  animation: lineupPulse 4s linear infinite;
+}
+
+@keyframes lineupPulse {
+  0%, 100% {
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+    transform: translateY(0);
+  }
+  33% {
+    color: #00ff00;
+    text-shadow: 0 0 8px #00ff00;
+    transform: translateY(-3px);
+  }
+  66% {
+    color: #ffff00;
+    text-shadow: 0 0 8px #ffff00;
+    transform: translateY(3px);
+  }
 }
