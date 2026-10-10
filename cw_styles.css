@@ -5,16 +5,66 @@
    Tutorial 5
    Case Problem 2
    
-   Author:   Nick Camper
-   Date:     10/7/2026 
+   Author:   
+   Date:     
    
    Filename: cw_styles.css
 
    This file contains the screen styles used with the 
    Cauli-Wood Gallery home page
-
 */
+
 @import url("cw_designs.css"); 
+
+/* ===================================================
+   New Animations: Image Spinning & Text Entrance
+   =================================================== */
+
+/* Keyframes for the continuous 360-degree spin */
+@keyframes spinInPlace {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Keyframes for an engaging text fade and slide-in effect */
+@keyframes textEngage {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Target exactly cw_image07 and cw_image01 using attribute selectors */
+img[src="cw_image07.png"],
+img[src="cw_image01.png"] {
+    display: inline-block; /* Ensures transform calculates correctly */
+    transform-origin: center; /* Keeps the rotation perfectly centered in-place */
+    animation: spinInPlace 8s linear infinite; /* Continuous linear spinning */
+}
+
+/* Pause the spinning animation when hovered */
+img[src="cw_image07.png"]:hover,
+img[src="cw_image01.png"]:hover {
+    animation-play-state: paused;
+}
+
+/* Apply noticeable entry animation to the page paragraphs */
+article p {
+    animation: textEngage 1.2s ease-out forwards;
+}
+
+
+/* ===================================================
+   Existing Layout Styles
+   =================================================== */
 
 nav#bottom {
     display: flex;
@@ -27,22 +77,17 @@ nav#bottom ul {
     flex: 0 1 150px;
 }
 
-
 @media screen and (max-width: 480px) {
-    
-    
     body {
         color: rgb(211, 211, 211);
         background-color: rgb(51, 51, 51);
     }
-
  
     aside, 
     article img, 
     section#spotlight {
         display: none;
     }
-
    
     nav#top ul {
         display: flex;
@@ -54,7 +99,6 @@ nav#bottom ul {
         font-size: 2.2em;
         flex: 1 1 130px;
     }
-
    
     nav#top ul li:nth-of-type(1) {
         background: url("cw_image01.png") center / contain no-repeat;
@@ -82,29 +126,26 @@ nav#bottom ul {
 }
 
 p#links {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-around;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
 
-    p#links a {
-        color: white;
-        background-color: rgb(220, 27, 27);
-        border-radius: 20px;
-        padding: 10px;
-        text-decoration: none;
-    }
+p#links a {
+    color: white;
+    background-color: rgb(220, 27, 27);
+    border-radius: 20px;
+    padding: 10px;
+    text-decoration: none;
+}
 
-    @media screen and (min-width: 481px) {
-    
-   
+@media screen and (min-width: 481px) {
     body {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
     }
-
     
     article {
         flex: 2 1 400px;
@@ -113,7 +154,6 @@ p#links {
     aside {
         flex: 1 2 200px;
     }
-
     
     nav#top ul {
         display: flex;
@@ -128,7 +168,6 @@ p#links {
     nav#top ul li {
         flex: 0 1 80px;
     }
-
    
     p#links {
         display: none;
