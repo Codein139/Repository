@@ -65,10 +65,29 @@ article p {
    Sidebar Alignment Adjustments
    =================================================== */
 
-/* Center the list thumbnail images inside the Upcoming aside section */
+/* Center the list container and remove default browser margins */
+aside dl {
+    text-align: center;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* Ensure the text links align centered */
+aside dl dt {
+    text-align: center;
+}
+
+/* Center list thumbnail images and give them clean spacing */
 aside dl dt img {
     display: block;
-    margin: 10px auto;
+    margin: 15px auto 8px auto; /* 15px top, centered left/right, 8px bottom */
+}
+
+/* Align descriptions (dates/times) beneath the terms perfectly */
+aside dl dd {
+    text-align: center;
+    margin-left: 0; /* Clears the default browser indentation for <dd> tags */
+    margin-bottom: 15px; /* Adds space before the next item */
 }
 
 /* ===================================================
