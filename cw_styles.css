@@ -17,7 +17,7 @@
 @import url("cw_designs.css"); 
 
 /* ===================================================
-   New Animations: Image Spinning & Text Entrance
+   Animations: Image Spinning & Text Entrance
    =================================================== */
 
 /* Keyframes for the continuous 360-degree spin */
@@ -61,6 +61,15 @@ article p {
     animation: textEngage 1.2s ease-out forwards;
 }
 
+/* ===================================================
+   Sidebar Alignment Adjustments
+   =================================================== */
+
+/* Center the list thumbnail images inside the Upcoming aside section */
+aside dl dt img {
+    display: block;
+    margin: 10px auto;
+}
 
 /* ===================================================
    Existing Layout Styles
