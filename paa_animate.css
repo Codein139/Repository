@@ -9,12 +9,8 @@
 
    Filename: paa_animate.css
    
-   Sprite animation is created using the paa_bat.png, 
-   paa_bfly.png, and paa_fox.png image files.
-   
-   paa_bat.png has 40 frames
-   paa_bfly.png has 34 frames
-   paa_fox.png has 28 frames
+   Updated to substitute old CSS character sprite loops 
+   with adaptive HTML5 game engine canvas containers.
 
 */
 
@@ -50,72 +46,16 @@ nav#gameLinks a:hover::after {
 }
 
 
-/* Sprite Styles */
+/* New Game Canvas Layout Alignment Styles */
 
-div.sprite {
-   position: absolute;
+#gameBox {
+   position: relative;
+   overflow: hidden;
 }
 
-div#bat {
-   width: 40px;
-   height: 50px;
-   top: 100px;
-   left: -50px;
-   background: url("paa_bat.png") left center / cover no-repeat;
-}
-
-div#butterfly {
-   width: 35px;
-   height: 35px;
-   top: 60px;
-   left: -50px;
-   background: url("paa_bfly.png") left center / cover no-repeat;
-}
-
-div#fox {
-   width: 280px;
-   height: 260px;
-   bottom: 10px;
-   right: 10px;
-   background: url("paa_fox.png") left center / cover no-repeat;
-}
-
-
-/* Animation Styles */
-
-@keyframes playSprite {
-   100% {
-      background-position: right center;
-   }
-}
-
-@keyframes flyRight {
-   25% {
-      top: 150px;
-   }
-   50% {
-      top: 55px;
-   }
-   65% {
-      top: 120px;
-   }
-   90% {
-      top: 50px;
-   }
-   100% {
-      top: 80px;
-      left: 100%;
-   }
-}
-
-div#fox {
-   animation: playSprite 3.5s steps(27) 4s infinite;
-}
-
-div#bat {
-   animation: playSprite 2s steps(39) infinite, flyRight 8s linear infinite;
-}
-
-div#butterfly {
-   animation: playSprite 1s steps(33) 3s infinite, flyRight 6s cubic-bezier(0, 1, 0.73, 0) infinite;
+#gameCanvas {
+   display: block;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
 }
